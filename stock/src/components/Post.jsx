@@ -1,14 +1,14 @@
 
-const names = ["Guilherme", "Guilherme Cosme dos Santos" ]
+// const names = ["Guilherme", "Guilherme Cosme dos Santos" ];
 
-export default function Post() {
+export default function Post(props) {
 
-    const chosenName = Math.random() > 0.5 ? names[0] : names[1];
+    // const chosenName = Math.random() > 0.5 ? names[0] : names[1];
 
   return (
     <>
-    <p> {chosenName} </p>
-    <p>ReactJs is Awesome!</p>
+    <p> {props.author} </p>
+    <p> {props.body} </p>
     </>
   )
 }
