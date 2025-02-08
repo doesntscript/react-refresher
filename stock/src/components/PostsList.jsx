@@ -3,6 +3,7 @@ import NewPost from "./NewPost";
 import Post from "./Post";
 
 import classes from "./PostsList.module.css"
+import Modal from "./Modal";
 
 
 export default function () {
@@ -23,11 +24,13 @@ export default function () {
 
   return (
     <>
-    <NewPost onBodyChange={bodyChangeHandler} onAuthorChange={authorChangeHandler} />
+    <Modal>
+      <NewPost onBodyChange={bodyChangeHandler} onAuthorChange={authorChangeHandler} />
+    </Modal>
 
     <ul className={classes.posts}>
     <Post author={enteredAuthor} body={enteredBody}  />  
-    {/* <Post author={enteredAuthor} body={enteredBody} /> */}
+    <Post author={enteredAuthor} body={enteredBody} />
     </ul>
     </>
   );
