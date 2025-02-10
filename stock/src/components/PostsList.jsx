@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import NewPost from "./NewPost";
+
 import Post from "./Post";
 
 import classes from "./PostsList.module.css"
-import Modal from "./Modal";
 
 
-export default function ({ isPosting, onStopPosting }) {
+export default function () {
   //  2 - Abordagem
   // let modalContent; 
 
@@ -63,11 +62,11 @@ export default function ({ isPosting, onStopPosting }) {
     } */}
 
     {/* 3 - Abordagem */}
-    {isPosting && (
+    {/* {isPosting && (
        <Modal onClose={onStopPosting} >
        <NewPost onCancel={onStopPosting} onAddPost={addPostHandler} />
       </Modal>
-    )}
+    )} */}
 
     {!isFetching && posts.length > 0 && (
       <ul className={classes.posts}>
