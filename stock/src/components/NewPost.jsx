@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import classes from './NewPost.module.css';
 
-function NewPost({  onCancel }) {
+function NewPost({  onCancel, onAddPost }) {
     // const stateData = useState("");
     // stateData[0] // current value , valor do estado atual. 
     // stateData[1] // state updatin' fucntion , valor de atualização de estado(função). 
@@ -36,7 +36,8 @@ function NewPost({  onCancel }) {
       body: enteredBody,
       author: enteredAuthor
     };
-    console.log(postData);
+    // console.log(postData);
+    onAddPost(postData);
     onCancel();
   }
 

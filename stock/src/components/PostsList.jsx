@@ -7,8 +7,6 @@ import Modal from "./Modal";
 
 
 export default function ({ isPosting, onStopPosting }) {
-
-  
   //  2 - Abordagem
   // let modalContent; 
 
@@ -18,6 +16,13 @@ export default function ({ isPosting, onStopPosting }) {
   //   </Modal>
   // }
 
+  // Gerenciar uma lista de postagens e essa lista deve ser editada sempre que enviarmos uma nova postagem. 
+  const [posts, setPosts] = useState([  ]);
+
+  function addPostHandler(postData) {
+    // setPosts([postData, ...posts]); // Não e o ideal : se você atualizar o estado e esse novo estado for baseado no valor do estado anterior , você deve passa uma funcção parad efinir os posts. 
+    setPosts((existingPosts) => [postData, ...existingPosts]); // atualização de estado pendentes mas otimizada
+  }
 
   return (
     <>
@@ -34,7 +39,7 @@ export default function ({ isPosting, onStopPosting }) {
     {/* 3 - Abordagem */}
     {isPosting && (
        <Modal onClose={onStopPosting} >
-       <NewPost onCancel={onStopPosting} />
+       <NewPost onCancel={onStopPosting} onAddPost={addPostHandler} />
       </Modal>
     )}
     
