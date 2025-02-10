@@ -22,18 +22,18 @@ export default function PostsList() {
    // Esse código causaria um loop ifinito 
   const posts = useLoaderData();  
  
-  function addPostHandler(postData) {
-    // setPosts([postData, ...posts]); // Não e o ideal : se você atualizar o estado e esse novo estado for baseado no valor do estado anterior , você deve passa uma funcção parad efinir os posts. 
-    fetch('http://localhost:8080/posts', {
-      method: 'POST',
-      body: JSON.stringify(postData),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    setPosts((existingPosts) => [postData, ...existingPosts]); // atualização de estado pendentes mas otimizada
+  // function addPostHandler(postData) {
+  //   // setPosts([postData, ...posts]); // Não e o ideal : se você atualizar o estado e esse novo estado for baseado no valor do estado anterior , você deve passa uma funcção parad efinir os posts. 
+  //   fetch('http://localhost:8080/posts', {
+  //     method: 'POST',
+  //     body: JSON.stringify(postData),
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     }
+  //   });
+  //   setPosts((existingPosts) => [postData, ...existingPosts]); // atualização de estado pendentes mas otimizada
    
-  }
+  // }
 
   return (
     <>
