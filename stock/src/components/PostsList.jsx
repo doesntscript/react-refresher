@@ -9,20 +9,6 @@ import Modal from "./Modal";
 export default function ({ isPosting, onStopPosting }) {
 
   
-  const [ enteredBody, setEnteredBody ] = useState("");
-  const [ enteredAuthor, setEnteredAuthor ] = useState("");
-
-  
-
-  function bodyChangeHandler(event) {
-    setEnteredBody(event.target.value); // Variável atualizada aqui
-
-  }
-
-  function authorChangeHandler(event) {
-    setEnteredAuthor(event.target.value);
-  }
-
   //  2 - Abordagem
   // let modalContent; 
 
@@ -48,14 +34,14 @@ export default function ({ isPosting, onStopPosting }) {
     {/* 3 - Abordagem */}
     {isPosting && (
        <Modal onClose={onStopPosting} >
-       <NewPost onBodyChange={bodyChangeHandler} onAuthorChange={authorChangeHandler} onCancel={onStopPosting} />
+       <NewPost onCancel={onStopPosting} />
       </Modal>
     )}
     
 
     <ul className={classes.posts}>
-    <Post author={enteredAuthor} body={enteredBody}  />  
-    <Post author={enteredAuthor} body={enteredBody} />
+    
+    <Post author="Guilherme" body="Reactjs is awesome!" />
     </ul>
     </>
   );
