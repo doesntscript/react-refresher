@@ -48,7 +48,7 @@ export default function ({ isPosting, onStopPosting }) {
     {/* 3 - Abordagem */}
     {isPosting && (
        <Modal onClose={onStopPosting} >
-       <NewPost onBodyChange={bodyChangeHandler} onAuthorChange={authorChangeHandler} />
+       <NewPost onBodyChange={bodyChangeHandler} onAuthorChange={authorChangeHandler} onCancel={onStopPosting} />
       </Modal>
     )}
     
