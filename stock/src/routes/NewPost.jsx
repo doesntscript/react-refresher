@@ -2,9 +2,10 @@
 
 import { useState } from 'react';
 import classes from './NewPost.module.css';
+import { Link } from 'react-router-dom';
 import Modal from '../components/Modal';
 
-function NewPost({  onCancel, onAddPost }) {
+function NewPost({ onAddPost }) {
     // const stateData = useState("");
     // stateData[0] // current value , valor do estado atual. 
     // stateData[1] // state updatin' fucntion , valor de atualização de estado(função). 
@@ -45,7 +46,7 @@ function NewPost({  onCancel, onAddPost }) {
 
 
   return (
-    <Modal>
+    <Modal > 
       <form className={classes.form} onSubmit={submitHandler} >
       <p>
         <label htmlFor="body">Text</label>
@@ -57,7 +58,7 @@ function NewPost({  onCancel, onAddPost }) {
         <input type="text" id="name" required onChange={authorChangeHandler}/>
       </p>
       <p className={classes.actions} >
-      <button type='button' onClick={onCancel} > Cancel </button>
+      <Link to="/" type='button' > Cancel </Link>
       <button> Submit </button>
       </p>
     </form>
