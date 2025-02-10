@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NewPost from "./NewPost";
 import Post from "./Post";
 
@@ -17,11 +17,34 @@ export default function ({ isPosting, onStopPosting }) {
   // }
 
   // Gerenciar uma lista de postagens e essa lista deve ser editada sempre que enviarmos uma nova postagem. 
-  const [posts, setPosts] = useState([  ]);
+
+  //fetch('http://localhost:8080/posts').then(response => response.json()).then(data = { setPosts(data.posts); 
+  // });
+   // Esse código causaria um loop ifinito 
+
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    async function fetchPosts() {
+      const response = await fetch('http://localhost:8080/posts')
+      const resData = await response.json();
+      setPosts(resData.posts);
+    }
+
+    fetchPosts();
+  }, []);
 
   function addPostHandler(postData) {
     // setPosts([postData, ...posts]); // Não e o ideal : se você atualizar o estado e esse novo estado for baseado no valor do estado anterior , você deve passa uma funcção parad efinir os posts. 
+    fetch('http://localhost:8080/posts', {
+      method: 'POST',
+      body: JSON.stringify(postData),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
     setPosts((existingPosts) => [postData, ...existingPosts]); // atualização de estado pendentes mas otimizada
+   
   }
 
   return (
