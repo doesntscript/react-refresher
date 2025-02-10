@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useLoaderData } from "react-router-dom";
 
 import Post from "./Post";
-
 import classes from "./PostsList.module.css"
 
 
-export default function () {
+
+export default function PostsList() {
   //  2 - Abordagem
   // let modalContent; 
 
@@ -20,22 +20,8 @@ export default function () {
   //fetch('http://localhost:8080/posts').then(response => response.json()).then(data = { setPosts(data.posts); 
   // });
    // Esse código causaria um loop ifinito 
-
-  const [posts, setPosts] = useState([]);
-  const [isFetching, setIsFetching] = useState(false);
-
-  useEffect(() => {
-    async function fetchPosts() {
-      setIsFetching(true);
-      const response = await fetch('http://localhost:8080/posts')
-      const resData = await response.json();
-      setPosts(resData.posts);
-      setIsFetching(false);
-    }
-
-    fetchPosts();
-  }, []);
-
+  const posts = useLoaderData();  
+ 
   function addPostHandler(postData) {
     // setPosts([postData, ...posts]); // Não e o ideal : se você atualizar o estado e esse novo estado for baseado no valor do estado anterior , você deve passa uma funcção parad efinir os posts. 
     fetch('http://localhost:8080/posts', {
@@ -68,22 +54,17 @@ export default function () {
       </Modal>
     )} */}
 
-    {!isFetching && posts.length > 0 && (
+    {posts.length > 0 && (
       <ul className={classes.posts}>
       {posts.map((post) => ( 
        <Post key={post.body} author={post.author} body={post.body} />
     ))}
       </ul>
     )}
-    {!isFetching && posts.length === 0 && (
+    {posts.length === 0 && (
       <div style={{ textAlign: 'center', color: 'white' }}>
         <h2>There are no posts yet.</h2>
         <p>Start adding something cool about you day/life !</p>
-      </div>
-    )}
-    {isFetching && (
-      <div style={{ textAlign: 'center', color: 'white' }}>
-      <p>Loading posts...</p>
       </div>
     )}
     </>
